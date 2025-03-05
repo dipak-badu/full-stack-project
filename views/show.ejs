@@ -1,0 +1,54 @@
+<%  layout("/layouts/boilerplate.ejs") %>
+
+
+<div class="row ">
+    <div class="col-8 offset-2 mt-3 ">
+    <div class="card col-8 offset-2 show-card listing-card">
+        <b> <%= listing.title %></b> 
+        <img src=" <%= listing.image.url %> " class="card-img-top show-img" alt="Listing">
+      <div class="card-body">
+        <p class="card-text">
+            <i> owned by <%=listing.owner.username  %></i><br> <br>
+            <%= listing.description%> <br> 
+            &#8377;<%= listing.price.toLocaleString("en-IN")%> <br>
+            <%= listing.country %> <br>
+            <%= listing.location %> </p>
+      </div> 
+    </div>
+   
+    
+</div>
+<br>
+<div class="btns o mb-3">
+<%if(currUser && currUser._id.equals(listing.owner._id)){%>
+    <form action="/listings/<%= listing._id %>/edit" method="get" class="offset-4 ">
+        <button class=" btn btn-dark  edit-btn">Edit</button>
+    </form>
+    <%}%>
+  
+    <%if(currUser && currUser._id.equals(listing.owner._id)){%>
+    <a href="/listings/<%= listing._id %>/reviews" class="btn btn-dark delete-btn offset-lg-3 offset-sm-1"> Review</a>
+<%}%>
+<%if(!currUser || !currUser._id.equals(listing.owner._id) ){%>
+    <a href="/listings/<%= listing._id %>/reviews" class="btn btn-dark delete-btn offset-lg-5 offset-sm-1"> Review</a>
+<%}%>
+</div> 
+</div>
+<hr>
+
+<%if(currUser && currUser._id.equals(listing.owner._id)){%>
+
+ <div class="offset-5 offset-lg-5 mb-2">
+    <form action="/listings/<%= listing._id %>?_method=DELETE" method="post" class="">
+        <button class=" btn btn-dark delete-btn">Delete Listing</button>
+</div> 
+   
+<%}%> 
+
+
+
+ 
+
+
+    
+   
