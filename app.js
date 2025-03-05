@@ -20,6 +20,7 @@ app.use(express.json());
 app.set("views", path.join(__dirname , "views"));
 app.set("views", "./views");
 app.set("view engine", "ejs");
+mongoose.set("strictPopulate", false);
 app.use(express.urlencoded({ extended: true }));
 app.engine('ejs', ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));

@@ -57,7 +57,7 @@
    <div class="card col-5  mb-3 ms-2">
      
           <div class="card-body">
-            <h5 class="card-title"><%= review.author ? review.author.username : "Unknown User" %></h5>
+            <h5 class="card-title"> @<%= review.author ? review.author.username : "Unknown User" %></h5>
 
           <p class="card-text"><%= review.comment %></p>
           <p class="card-text"><%= review.rating %> stars</p>
