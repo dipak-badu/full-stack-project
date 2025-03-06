@@ -20,7 +20,8 @@ router.get("/", wrapAsync(async(req,res)=>{
         if(!listing){
             throw new ExpressError(404, "Listing not found!!")
         }
-    res.render("review.ejs", {listing})
+
+    res.render("review.ejs", {listing     })
 }))
 
 // post review route 
