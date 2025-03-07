@@ -31,4 +31,4 @@ router.get("/logout", userController.logOut )
 module.exports= router
 
 
-//  NOTE:// also we can use router.route for route request 
+//  NOTE:// also we can use router.route for route request   
