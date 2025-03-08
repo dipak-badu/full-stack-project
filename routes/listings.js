@@ -40,6 +40,7 @@ router.get("/:id/edit",
 router.put("/:id", 
       isLoggIn,
       isOwner,
+      upload.single('image'),
       validateListing, 
       wrapAsync( listingController.editListing))
 
