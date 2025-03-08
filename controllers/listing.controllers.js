@@ -88,9 +88,10 @@ module.exports.renderEditForm = async(req, res)=>{
 }
 
 // put request for edit 
-module.exports.editListing = async(req, res)=>{  
+module.exports.editListing = async(req, res)=>{ 
+    
     let {id} = req.params
-    let {title, description, image , price, location, country } = req.body
+    let {title, description , price, location, country } = req.body
     
         if(!id){
             throw new ExpressError(400, "Id not found!")   
@@ -101,18 +102,23 @@ module.exports.editListing = async(req, res)=>{
         
         price,
         location,
-        country
+        country,
+        
        }
-       if (image) {
-        updatePayload.image = {
-            url:image,
-        };
-    }
+      
+    
     
     const updateListing = await Listing.findByIdAndUpdate(id, updatePayload,
         {
         new:true, runValidators:true
     })
+   
+    if ( typeof req.file!= "undefined"){
+        let url = req.file.path
+        let filename= req.file.filename
+        updateListing.image ={url, filename}
+        await updateListing.save()
+    }
        if(!updateListing){
       throw new ExpressError(500, "Error while updating listing!")
        }
