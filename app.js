@@ -46,9 +46,9 @@ async function main(){
     await mongoose.connect(MONGO_URL)
 }
 
-app.get("/", (req, res)=>{
-    res.send("Hii working properly")
-})
+// app.get("/", (req, res)=>{
+//     res.send("Hii working properly")
+// })
 
 // *********************session & flash ****************************** 
 const sesionOPtions ={
@@ -77,15 +77,6 @@ app.use((req, res, next)=>{
     res.locals.currUser= req.user
     next();
 })
-
-// app.get("/demouser", async(req, res)=>{
-//     let fakeUser = new User({
-//         email: "student@gmail.com",
-//         username:"meemansa"
-//     })
-//     let registerUser = await User.register(fakeUser, "wordwar")
-//     res.send(registerUser)
-// })
 
 // ****************** routes ********************** 
 const listingsRouter = require("./routes/listings.js")
